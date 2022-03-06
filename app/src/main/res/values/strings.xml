@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Guess Hal\'s Number</string>
+    <string name="guesses">Guesses:</string>
+    <string name="what_is_my_number">What is my number?</string>
+    <string name="hal">HAL</string>
+    <string name="guess">guess</string>
+    <string name="_100">100</string>
+    <string name="_1_000">1,000</string>
+    <string name="_10_000">10,000</string>
+    <string name="_100_000">100,000</string>
+    <string name="hal_picks_between_1_and">HAL picks \n between 1 and</string>
+    <string name="_1_000_000">1,000,000</string>
+    <string name="guess_my_number_dave">Guess my number, Dave</string>
+</resources>

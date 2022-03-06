@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ancientGreen"
+    tools:context=".MainActivity" >
+
+    <ImageView
+        android:id="@+id/imageViewHAL"
+        android:layout_width="173dp"
+        android:layout_height="556dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/hal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playersGuess"
+        app:srcCompat="@drawable/hal9000" />
+
+    <TextView
+        android:id="@+id/guesses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="monospace"
+        android:text="@string/guesses"
+        android:textAlignment="center"
+        android:textColor="@color/halsVoice"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/HALsChallenge" />
+
+    <TextView
+        android:id="@+id/HALsVoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="monospace"
+        android:text="Higher"
+        android:textColor="@color/halsVoice"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imageViewHAL"
+        app:layout_constraintTop_toBottomOf="@+id/playersGuess"
+        tools:text="Higher" />
+
+    <EditText
+        android:id="@+id/playersGuess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:fontFamily="monospace"
+        android:hint="@string/what_is_my_number"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textColor="@color/halsVoice"
+        android:textColorHint="#546E7A"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guesses" />
+
+    <RadioGroup
+        android:id="@+id/HALsNumberRange"
+        android:layout_width="184dp"
+        android:layout_height="243dp"
+        android:layout_marginTop="72dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewHAL"
+        app:layout_constraintTop_toBottomOf="@+id/submitGuess">
+
+        <RadioButton
+            android:id="@+id/upTo100"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:fontFamily="monospace"
+            android:text="@string/_100"
+            android:textColor="@color/halsVoice"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/upTo1000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="@string/_1_000"
+            android:textColor="@color/halsVoice"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/upTo10000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="@string/_10_000"
+            android:textColor="@color/halsVoice"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/upTo100000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="@string/_100_000"
+            android:textColor="@color/halsVoice"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/upTo1000000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:minHeight="48dp"
+            android:text="@string/_1_000_000"
+            android:textColor="@color/halsVoice"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/submitGuess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/darker_gray"
+        android:backgroundTint="@android:color/darker_gray"
+        android:fontFamily="monospace"
+        android:text="@string/guess"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.577"
+        app:layout_constraintStart_toEndOf="@+id/imageViewHAL"
+        app:layout_constraintTop_toBottomOf="@+id/HALsVoice" />
+
+    <TextView
+        android:id="@+id/radioGroupLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="monospace"
+        android:labelFor="@id/HALsNumberRange"
+        android:text="@string/hal_picks_between_1_and"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/halsVoice"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/HALsNumberRange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewHAL" />
+
+    <TextView
+        android:id="@+id/HALsChallenge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/guess_my_number_dave"
+        android:textAlignment="center"
+        android:textColor="@color/halsVoice"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/numberOfGuesses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="monospace"
+        android:text="0"
+        android:textAlignment="viewStart"
+        android:textColor="@color/halsVoice"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/guesses"
+        app:layout_constraintTop_toBottomOf="@+id/HALsChallenge"
+        tools:text="0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
