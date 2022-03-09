@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/ancientGreen"
-    tools:context=".MainActivity" >
+    android:visibility="visible"
+    tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/imageViewHAL"
@@ -61,6 +62,7 @@
         android:textColorHint="#546E7A"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/guesses" />
@@ -186,13 +188,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:fontFamily="monospace"
-        android:text="0"
         android:textAlignment="viewStart"
         android:textColor="@color/halsVoice"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/guesses"
-        app:layout_constraintTop_toBottomOf="@+id/HALsChallenge"
-        tools:text="0" />
+        app:layout_constraintTop_toBottomOf="@+id/HALsChallenge" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
