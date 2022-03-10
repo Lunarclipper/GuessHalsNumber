@@ -24,4 +24,5 @@
     <string name="_100_000">100000</string>
     <string name="_1_000_000">1000000</string>
     <string name="guess_my_number_dave">Guess my number, Dave</string>
+    <string name="clearEntry"></string>
 </resources>

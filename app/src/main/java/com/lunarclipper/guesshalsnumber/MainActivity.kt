@@ -11,29 +11,34 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     // Setup player interaction button listener
         val playerAction: Button = findViewById(R.id.playerAction)
+        var score = 0
         playerAction.setOnClickListener {
-            doIt(playerAction)
+            score = doIt(playerAction, score)
         } //END player_action.setOnClickListener
 
     /* Click listener not needed for radio buttons: Action taken by checked button only when
     * playerAction is tapped. Changing which button is checked when one is tapped is handled
     * by Android. */
     } //END override fun onCreate(savedInstanceState: Bundle?)
-    val player = User()
-    val aiHAL = HAL9000()
+    private val player = User()
+    private val aiHAL = HAL9000()
 
-    private fun doIt(playerAction: Button) {
+    private fun doIt(playerAction: Button, oldScore: Int): Int {
         /* check to see if click event listener is working on button.
         playerAction.text ="¡GANO!"
         */
-    //Set UI handler variables
+        //Set UI handler variables
         val halsNumberRange: RadioGroup = findViewById(R.id.HALsNumberRange)
         val selectedRange: RadioButton = findViewById(halsNumberRange.checkedRadioButtonId)
         val pickRange: TextView = findViewById(R.id.radioGroupLabel)
         val playerGuess: EditText = findViewById(R.id.playersGuess)
         val playerScore: TextView = findViewById(R.id.numberOfGuesses)
-    //Set the highest numer HAL can pick
+        val halsVoice: TextView = findViewById(R.id.HALsVoice)
+        //Set the highest number HAL can pick
         val maxNumber: Int = selectedRange.text.toString().toInt()
+        //Get player's guess
+        val guess = playerGuess.text.toString().trim()
+        var score = oldScore
 
         //determine state of game by player_action.text
         when (playerAction.text.toString()) {
@@ -48,41 +53,64 @@ class MainActivity : AppCompatActivity() {
                 halsNumberRange.visibility = View.INVISIBLE
                 //Change game state to player guess mode
                 playerAction.text = getString(R.string.guess)
+                aiHAL.playerNumber = (1..maxNumber).random()
             } //END R.string.set
 
             getString(R.string.guess) -> {
-                playerAction.text = getString(R.string.play_again)
+                //Do nothing if guess is empty or NULL
+                if (guess.isEmpty()) return score
+                //If guess is not empty or null set player.playerNumber
+                else player.playerNumber = guess.toInt()
+
+                //Check player.playerNumber against aiHAL.playerNumber
+                when {
+                    aiHAL.playerNumber < player.playerNumber -> {
+                        //update hint
+                        halsVoice.text = getString(R.string.lower)
+                        //Clear last guess
+                        playerGuess.setText(getString(R.string.clearEntry))
+                        //update and display score
+                        score++
+                        playerScore.text = score.toString()
+                    } //END aiHAL.playerNumber < player.playerNumber
+                aiHAL.playerNumber > player.playerNumber -> {
+                    //update hint
+                    halsVoice.text = getString(R.string.higher)
+                    //Clear last guess
+                    playerGuess.setText(getString(R.string.clearEntry))
+                    //update and display score
+                    score++
+                    playerScore.text = score.toString()
+                } //END aiHAL.playerNumber > player.playerNumber
+                else -> {
+                    halsVoice.text = getString(R.string.correct)
+                    playerAction.text = getString(R.string.play_again)
+                } //END else
+            }// END when
             } //END R.string.guess
 
             getString(R.string.play_again) -> {
                 //display a blank space for number of guesses
-                playerScore.text =" "
+                playerScore.text = getString(R.string.clearEntry)
+                //Clear last guess
+                playerGuess.setText(getString(R.string.clearEntry))
                 //Make EditText for player's guess invisible
                 playerGuess.visibility = View.INVISIBLE
+                //Chane hint to say, "Ready"
+                halsVoice.text = getString(R.string.ready)
                 //Re-set Radio button group label
                 pickRange.text = getString(R.string.hal_picks_between_1_and)
                 //Make range selection buttons visible
                 halsNumberRange.visibility = View.VISIBLE
                 //Change game state to initial state
                 playerAction.text = getString(R.string.set)
+                //reset player score
+                score = 0
+                return score
             } //END R.string.play_again
-        //@string/set: -HAL9000.playerNumber = (1..maxRange).random()
-        //-make playersGuess visible
         } //END when (playerAction)
-        /* TODO: Setup actions to be taken depending on the state of the user interaction button
-         * determine state of game by player_action.text
 
-         *
-         * @string/guess: -User.playerNumber = playersGuess.text.toInt()
-         *                -Check User.playerNumber against HAL9000.playerNumber
-         *                     -User > Hal -> HALsVoice.text = @string/lower
-         *                     -User < Hal -> HALsVoice.text = @string/higher
-         *                     -User == Hal -> {HALsVoice.text = @string/correct
-         *                                      playerAction.text = @string/play_again}
-         * @string/play_again: -player_action.text = @string/set
-         *                     -radioGroupLabel.text = @string/hal_picks_between_1_and
-         *                     -HALsVoice.text = @string/ready
-         *                     -make playersGuess invisible */
+        return score
     }//END fun doIt()
 } //END class MainActivity : AppCompatActivity()
 
@@ -93,8 +121,6 @@ abstract class Player {
 
 //Human player class
 class User: Player() {
-    /* TODO: Check to see if there is a better way to make this value in User and HAL9000
-    *  buildable, without setting it to a value outside the acceptable range initially */
     override var playerNumber = 0 //currently set here for a pre-game value
 } //END class User: Player()
 
