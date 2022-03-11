@@ -1,28 +1,30 @@
 <resources>
     <string name="app_name">Guess Hal\'s Number</string>
+    <string name="guess_my_number_dave">Guess my number, Dave</string>
     <string name="guesses">Guesses:</string>
     <string name="what_is_my_number">What is my number?</string>
     <string name="hal">HAL</string>
-<!-- HALsVoice strings -->
+    <!-- HALsVoice strings -->
     <string name="higher">Higher</string>
     <string name="lower">Lower</string>
     <string name="correct">Correct</string>
     <string name="ready">Ready</string>
-<!-- END HALsVoice strings -->
-<!-- playerAction strings -->
+    <!-- END HALsVoice strings -->
+    <!-- playerAction strings -->
     <string name="guess">guess</string>
     <string name="set">set range</string>
     <string name="play_again">play again?</string>
-<!-- END playerAction strings -->
-<!--radioGroupLabel strings -->
+    <!-- END playerAction strings -->
+    <!--radioGroupLabel strings -->
     <string name="hal_picks_between_1_and">HAL picks \n between 1 and</string>
     <string name="hal_range_set">Guess a number\n1 - %1$s</string>
-<!--radioGroupLabel strings -->
+    <!--radioGroupLabel strings -->
+    <!-- RadioButton strings -->
     <string name="_100">100</string>
     <string name="_1_000">1000</string>
     <string name="_10_000">10000</string>
     <string name="_100_000">100000</string>
     <string name="_1_000_000">1000000</string>
-    <string name="guess_my_number_dave">Guess my number, Dave</string>
-    <string name="clearEntry"></string>
+    <!-- END RadioButton strings -->
+    <string name="clearEntry" />
 </resources>
