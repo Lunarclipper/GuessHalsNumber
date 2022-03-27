@@ -58,6 +58,7 @@ class MainActivity : AppCompatActivity() {
                 playerAction.text = getString(R.string.guess)
 
                 aiHAL.playerNumber = (1..maxNumber).random()
+                return score
             } //END R.string.set
 
             //Play game
@@ -92,6 +93,7 @@ class MainActivity : AppCompatActivity() {
                         score = updateScore(score, playerScore)
                     } //END else
                 }// END when
+                return score
             } //END R.string.guess
 
             //Reset game to initialize state
