@@ -9,6 +9,8 @@
     <string name="lower">Lower</string>
     <string name="correct">Correct</string>
     <string name="ready">Ready</string>
+    <string name="too_low">Too Low</string>
+    <string name="too_high">Too High</string>
     <!-- END HALsVoice strings -->
     <!-- playerAction strings -->
     <string name="guess">guess</string>

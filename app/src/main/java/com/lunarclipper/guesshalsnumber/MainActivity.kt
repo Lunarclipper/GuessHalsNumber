@@ -58,7 +58,6 @@ class MainActivity : AppCompatActivity() {
                 playerAction.text = getString(R.string.guess)
 
                 aiHAL.playerNumber = (1..maxNumber).random()
-                return score
             } //END R.string.set
 
             //Play game
@@ -68,6 +67,21 @@ class MainActivity : AppCompatActivity() {
                 //If guess is not empty or null set player.playerNumber
                 else player.playerNumber = guess.toInt()
 
+                //If guess < 1 or > maxNumber tell player out of range & return without changing score
+                if (player.playerNumber < 1) {
+                    //update hint
+                    halsVoice.text = getString(R.string.too_low)
+                    //Clear last guess
+                    playerGuess.setText(getString(R.string.clearEntry))
+                    return score
+                } //END if (player.playerNumber < 1)
+                    else if (player.playerNumber > maxNumber) {
+                    //update hint
+                    halsVoice.text = getString(R.string.too_high)
+                    //Clear last guess
+                    playerGuess.setText(getString(R.string.clearEntry))
+                    return score
+                } //END else if (player.playerNumber > maxNumber)
                 //Check player.playerNumber against aiHAL.playerNumber
                 when {
                     aiHAL.playerNumber < player.playerNumber -> {
@@ -93,7 +107,6 @@ class MainActivity : AppCompatActivity() {
                         score = updateScore(score, playerScore)
                     } //END else
                 }// END when
-                return score
             } //END R.string.guess
 
             //Reset game to initialize state
@@ -115,7 +128,6 @@ class MainActivity : AppCompatActivity() {
                 playerGuess.setText(getString(R.string.clearEntry))
                 //Change hint to say, "Ready"
                 halsVoice.text = getString(R.string.ready)
-                return score
             } //END R.string.play_again
         } //END when (playerAction)
         return score
