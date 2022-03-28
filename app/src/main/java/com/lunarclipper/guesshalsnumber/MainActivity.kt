@@ -1,8 +1,10 @@
 package com.lunarclipper.guesshalsnumber
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 
 //Forced portrait app orientation with entry in AndroidManifest.xml
@@ -115,6 +117,7 @@ class MainActivity : AppCompatActivity() {
                 score = 0
                 //Step 2: Make EditText for player's guess invisible
                 playerGuess.visibility = View.INVISIBLE
+                playerGuess.hideKeyboard()
                 //Step 3: Re-set Radio button group label to display starting message
                 pickRange.text = getString(R.string.hal_picks_between_1_and)
                 //Step 4: Make range selection buttons visible
@@ -138,6 +141,10 @@ class MainActivity : AppCompatActivity() {
         playerScore.text = newScore.toString()
         return newScore
     } //END private fun updateScore(score: Int, playerScore: TextView): Int
+    private fun View.hideKeyboard() {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(windowToken, 0)
+    } //END private fun View.hideKeyboard()
 } //END class MainActivity : AppCompatActivity()
 
 //Base class for both App and human players
